@@ -4,7 +4,9 @@
   "type": "module",
   "license": "MIT",
   "scripts": {
-    "dev": "NODE_ENV=development tsx server/index.ts",
+    dev": "concurrently \"npm run server:dev\" \"npm run client:dev\"",
+    "server:dev": "NODE_ENV=development tsx server/index.ts",
+    "client:dev": "vite",
     "build": "tsx script/build.ts",
     "start": "NODE_ENV=production node dist/index.cjs",
     "check": "tsc",
@@ -76,6 +78,7 @@
     "zod-validation-error": "^3.4.0"
   },
   "devDependencies": {
+        "concurrently": "^8.2.1",
     "@replit/vite-plugin-cartographer": "^0.4.4",
     "@replit/vite-plugin-dev-banner": "^0.1.1",
     "@replit/vite-plugin-runtime-error-modal": "^0.0.3",
